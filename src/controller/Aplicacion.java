@@ -77,52 +77,96 @@ public class Aplicacion extends PApplet{
 	      tool=bar.hover();
 	    }
 	  });
-  
-	    		
+         PrintWriter output = createWriter ("archivo de figuras.txt");
+           output.println("meter el arreglo con los datos aca");
+           output.flush();//escribe en el archivo
+           output.close();//cierra la escritura del archivo
+           //exit();// sirve pa cerrar el programa cuando uno le ponga un condicion
+
+           cp5.addButton("crear")
+            .setValue(0)
+            .setPosition(420,640)
+            .setSize(60,40)
+            ;	    		
 	   
 	    		
 	    		
 	    		
-	  X1=cp5.addTextfield(TF1)
+	  cp5.addTextfield("X1")
 	  .setColorCaptionLabel(0)
 	     .setPosition(20,650)
 	     .setSize(60,20)
-	     .setFont(createFont("arial",20))
+	     .setFont(createFont("arial",15))
 	     .setAutoClear(false)
 	     .setValue(x1);
 	     
-	  Y1=cp5.addTextfield(TF2)
+	  cp5.addTextfield("Y1")
 	  .setColorCaptionLabel(0)
 	     .setPosition(120,650)
 	     .setSize(60,20)
-	     .setFont(createFont("arial",20))
+	     .setFont(createFont("arial",15))
 	     .setAutoClear(false)
 	     .setValue(y1)
 	     ;
 	     
-	  X2=cp5.addTextfield(TF3)
+	  cp5.addTextfield("X2")
 	  .setColorCaptionLabel(0)
 	     .setPosition(220,650)
 	     .setSize(60,20)
-	     .setFont(createFont("arial",20))
+	     .setFont(createFont("arial",15))
 	     .setAutoClear(false)
 	     .setValue(x2)
 	     ;
 	     
-	   Y2=cp5.addTextfield(TF4)
+         cp5.addTextfield("Y2")
+           .setColorCaptionLabel(0)
 	     .setColorCaptionLabel(0)
 	     .setPosition(320,650)
 	     .setSize(60,20)
-	     .setFont(createFont("arial",20))
+	     .setFont(createFont("arial",15))
 	     .setAutoClear(false)
 	     .setValue(y2)
 	     ;
 	   
-/*	   int Xpos=mouseX;
-	   int Ypos=mouseY;
-	   mouseXYtext = new Textlabel(cp5,Xpos.toString()+Ypos.toString(),100,100,400,200);
-*/
+         cp5.addTextlabel("actualpos")
+      .setText("X: 0 - Y:0")
+      .setPosition(460,20)
+      .setColorValue(0x00000000)
+      .setFont(createFont("Georgia",20))
+      ;
+
+
 	}
+	
+	public void crear() {
+               
+               String X1 = cp5.get(Textfield.class,"X1").getText();
+               int x1=Integer.parseInt(X1);
+               String Y1 = cp5.get(Textfield.class,"Y1").getText();
+               int y1=Integer.parseInt(Y1);
+               String X2 = cp5.get(Textfield.class,"X2").getText();
+               int x2=Integer.parseInt(X2);
+               String Y2 = cp5.get(Textfield.class,"Y2").getText();
+               int y2=Integer.parseInt(Y2);
+               if (tool==0){
+                       recttool(x1,y1,x2,y2);
+                       }
+                       if (tool==1){
+                         ellitool(x1, y1,x2, y2);
+                       }
+                       if (tool==2){
+                         linetool(x1, y1,x2, y2);
+                       }
+                       if (tool==3){
+                         arctool(x1, y1,x2, y2);
+                       }
+                       drawing.doPaint(g);
+               cp5.get(Textfield.class,"X1").clear();
+               cp5.get(Textfield.class,"Y1").clear();
+               cp5.get(Textfield.class,"X2").clear();
+               cp5.get(Textfield.class,"Y2").clear();
+               }
+
 
 	//Metodo draw de Processing que se ejecuta ciclicamente
 	public void draw() {
@@ -134,33 +178,56 @@ public class Aplicacion extends PApplet{
 	  
 	  
 	  background(255); 
-	  for (int i = 0; i <= width; i +=18) { 
-		  fill(0, 0, 0); text(i/(height/40), i+2, height-1);
-		  stroke(200); line(i, height, i, 0); 
-		  } 
-	  for (int j = 0; j < height; j += 18) { 
-		  fill(0, 0, 0); 
-		  text(40-j/(width/40), 2, j+15);
-		  stroke(200); 
-		  line(0, j, width, j); 
-		  } 
-	  stroke(0);
+           for (int i = 0; i <= width; i +=20) { 
+               fill(0, 0, 0);
+               textSize(9);
+               text((i/(height/35))*20, i+2, height-4);
+               stroke(200); line(i, height, i, 0); 
+               } 
+             for (int j = 0; j < height; j += 20) { 
+               fill(0, 0, 0); 
+               text((j/(width/35))*20, 2, j+15);
+               stroke(200); 
+               line(0, j, width, j); 
+               } 
+             stroke(0);
+String pos="X: "+ Integer.toString(mouseX)+" - Y: "+ Integer.toString(mouseY);
+       cp5.get(Textlabel.class,"actualpos").setText(pos);
+
 
 	if (tool==0){
 	recttool(x1,y1,x2,y2);
 	recttool2(x1,y1,x_2,y_2);
-	
+	+    cp5.get(Textfield.class,"X1").setCaptionLabel("x inicial");
+    cp5.get(Textfield.class,"Y1").setCaptionLabel("y inicial");
+    cp5.get(Textfield.class,"X2").setCaptionLabel("ancho");
+    cp5.get(Textfield.class,"Y2").setCaptionLabel("alto");
+
 	}
 
 	if (tool==1){
 	  ellitool(x1, y1,x2, y2);
 	  ellitool2(x1, y1,x_2, y_2);
+          cp5.get(Textfield.class,"X1").setCaptionLabel("x centro");
+          cp5.get(Textfield.class,"Y1").setCaptionLabel("y centro");
+          cp5.get(Textfield.class,"X2").setCaptionLabel("diametro ancho");
+          cp5.get(Textfield.class,"Y2").setCaptionLabel("diametro alto");
+
 	}
 	if (tool==2){
 	  linetool(x1, y1,x2, y2);
 	  linetool2(x1, y1,x_2, y_2);
+           cp5.get(Textfield.class,"X1").setCaptionLabel("x inicial");
+           cp5.get(Textfield.class,"Y1").setCaptionLabel("y inicial");
+           cp5.get(Textfield.class,"X2").setCaptionLabel("x final");
+           cp5.get(Textfield.class,"Y2").setCaptionLabel("y final");
+
 	}
 	if (tool==3){
+          cp5.get(Textfield.class,"X1").setCaptionLabel("x inicial");
+           cp5.get(Textfield.class,"Y1").setCaptionLabel("y inicial");
+           cp5.get(Textfield.class,"X2").setCaptionLabel("ancho");
+           cp5.get(Textfield.class,"Y2").setCaptionLabel("alto");
 	  arctool(x1, y1,x2, y2);
 	  arctool2(x1, y1,x_2, y_2);
 	}
