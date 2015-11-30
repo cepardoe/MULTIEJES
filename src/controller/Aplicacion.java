@@ -198,7 +198,7 @@ String pos="X: "+ Integer.toString(mouseX)+" - Y: "+ Integer.toString(mouseY);
 	if (tool==0){
 	recttool(x1,y1,x2,y2);
 	recttool2(x1,y1,x_2,y_2);
-	+    cp5.get(Textfield.class,"X1").setCaptionLabel("x inicial");
+	cp5.get(Textfield.class,"X1").setCaptionLabel("x inicial");
     cp5.get(Textfield.class,"Y1").setCaptionLabel("y inicial");
     cp5.get(Textfield.class,"X2").setCaptionLabel("ancho");
     cp5.get(Textfield.class,"Y2").setCaptionLabel("alto");
