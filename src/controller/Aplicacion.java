@@ -24,26 +24,10 @@ public class Aplicacion extends PApplet{
 	private int x_2=x1;
 	private int y_2=y1;
 	
-	// atributos para la matriz de figuras
-	private final int column=5;
-	private int row;
-	private int[][] matriz;
 	private int tool=0;
-
-	//iniciacion valores de texto
-	private Textfield X1;
-	private Textfield Y1;
-	private Textfield X2;
-	private Textfield Y2;
-	private Textlabel mouseXYtext;
-	private String TF1="X1";
-	private String TF2="Y1";
-	private String TF3="X2";
-	private String TF4="Y2";
 
 // 
 	private ControlP5 cp5;
-	private PFont font;
 // declaracion de tipo Drawing	
 	private Drawing drawing;
 	
@@ -57,8 +41,6 @@ public class Aplicacion extends PApplet{
 
 	  cp5 = new ControlP5(this);
 	  drawing = new Drawing();
-	  font = createFont("arial",8);
-		
 	  
 	  ButtonBar b = cp5.addButtonBar("bar")
 	     .setPosition(0, 0)
@@ -87,11 +69,8 @@ public class Aplicacion extends PApplet{
             .setValue(0)
             .setPosition(420,640)
             .setSize(60,40)
-            ;	    		
-	   
-	    		
-	    		
-	    		
+            ;	  
+           
 	  cp5.addTextfield("X1")
 	  .setColorCaptionLabel(0)
 	     .setPosition(20,650)
@@ -170,14 +149,8 @@ public class Aplicacion extends PApplet{
 
 	//Metodo draw de Processing que se ejecuta ciclicamente
 	public void draw() {
-		
-      X1.setValue(x1);
-	  Y1.setValue(y1);
-	  X2.setValue(x2);
-	  Y2.setValue(y2);
-	  
-	  
-	  background(255); 
+
+		background(255); 
            for (int i = 0; i <= width; i +=20) { 
                fill(0, 0, 0);
                textSize(9);
