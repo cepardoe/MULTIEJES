@@ -134,17 +134,19 @@ public class Aplicacion extends PApplet{
 	  
 	  
 	  background(255); 
-	  for (int i = 0; i <= width; i +=18) { 
-		  fill(0, 0, 0); text(i/(height/40), i+2, height-1);
-		  stroke(200); line(i, height, i, 0); 
-		  } 
-	  for (int j = 0; j < height; j += 18) { 
-		  fill(0, 0, 0); 
-		  text(40-j/(width/40), 2, j+15);
-		  stroke(200); 
-		  line(0, j, width, j); 
-		  } 
-	  stroke(0);
+    for (int i = 0; i <= width; i +=18) { 
+      fill(0, 0, 0);
+      textSize(9);
+      text((i/(height/40))*35/2, i+2, height-1);
+      stroke(200); line(i, height, i, 0); 
+      } 
+    for (int j = 0; j < height; j += 18) { 
+      fill(0, 0, 0); 
+      text((40-j/(width/40))*35/2, 2, j+15);
+      stroke(200); 
+      line(0, j, width, j); 
+      } 
+    stroke(0);
 
 	if (tool==0){
 	recttool(x1,y1,x2,y2);
